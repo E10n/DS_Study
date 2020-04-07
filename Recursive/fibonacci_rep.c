@@ -28,7 +28,7 @@ int fibot(int n) {
 
 int main()
 {
-	printf("%d", fibot(5));			//출력:5번째 피보나치의 수
+	printf("%d\n", fibot(10));			//출력:5번째 피보나치의 수
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
