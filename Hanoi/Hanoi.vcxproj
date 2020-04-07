@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{FA0AE67C-EEA9-4FE3-91A4-2E7B91DB99D6}</ProjectGuid>
+    <ProjectGuid>{5885D19F-957A-457A-9B56-0025AF99A84A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Repeat</RootNamespace>
+    <RootNamespace>Hanoi</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Repeat.c" />
+    <ClCompile Include="Hanoi.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
