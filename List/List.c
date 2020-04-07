@@ -1,13 +1,44 @@
-﻿// Stack.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
+﻿#include <stdio.h>
+#include <stdlib.h>
 
-#include <stdio.h>
+typedef struct Node
+{
+    struct Node* next;
+    int data;
+}Node;
+
+
+void add(Node* root,int n) {
+    Node* new_node = malloc(sizeof(struct Node));
+    new_node->data = n;
+    new_node->next = root->next;
+    root->next = new_node;
+}
+
+void del() {
+
+}
+
+void show_all(Node* root) {
+    Node* cur = root->next;
+    while (cur != NULL)
+    {
+        printf("%d ",cur->data);
+        cur = cur->next;
+    }
+
+}
+ 
 
 int main()
 {
+    Node* head = malloc(sizeof(struct Node));
+    head->next = NULL;
 
+    add(head, 2);
+    add(head, 3);
 
-
+    show_all(head);
 
 }
 
