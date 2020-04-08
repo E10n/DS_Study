@@ -1,4 +1,5 @@
-﻿#include <stdio.h>
+﻿//https://www.youtube.com/watch?v=aPYE0anPZqI&t=249s 참고용
+#include <stdio.h>
 
 void hanoi(int num, int from, int to, int other) {
 	
@@ -6,11 +7,15 @@ void hanoi(int num, int from, int to, int other) {
 	{
 		return;
 	}
-	hanoi(num - 1, from, other, to);
-	printf("%d 에서 %d 로 옮김\n",from,to);
-	hanoi(num - 1, other, to, from);
+	hanoi(num - 1, from, other, to); //맨아래 바로 윗블럭을 목적지가 아닌곳으로 옮김(2번), 그 윗블럭을 옮김(1번)
+	printf("%d에서 %d로 이동 \n",from,to);
+	hanoi(num - 1, other, to, from); // 자기의 윗블럭을 자기한테로 옮김(이때 기준은 2번블럭임), 2번블럭위 윗블럭n-1은 2번블럭의 목적지가 아닌곳에
+	//있으므로 이곳이 1번 블럭의출발지가 된다. 그리고 도착지는 2번 블럭의 목적지 이므로 to이다.
 
 }
+// (1) 윗블럭(n - 1)을 목적지가 아닌곳으로 옮긴다.
+// (2) 맨 아래 블럭(n번째 블럭)을 목적지로 옮긴다.(맨 아래 블럭이 옮겨진 후에는 그 윗블럭이 자기 위로 와야됨)
+// (3) 1번에서 옮겻던 블록을 2번으로 옮긴다.                <-|
 
 
 

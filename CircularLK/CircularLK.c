@@ -1,45 +1,62 @@
-﻿#include <stdio.h>
+﻿/*
+노드를 생성할때 new주소를 자기 자신의 주소로 한다.
+그리고 새로운 노드를 생성할때마다 첫번째 주소값을 옮겨준다.
+
+*/
+
+
+#include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node
-{
-    struct Node* next;
-    int data;
-}Node;
+typedef struct Node {
+	int data;
+	struct Node* next;
 
 
-void add(Node* root,int n) {
-    Node* new_node = malloc(sizeof(struct Node));
-    new_node->data = n;
-    new_node->next = root->next;
-    root->next = new_node;
+}node;
+
+node* create_node(int n) {
+	node* new_node = (node*)malloc(sizeof(node));
+	new_node->data = n;
+	new_node->next = new_node;
+
+	return new_node;
 }
 
-void del() {
+void add_node(node** ptail,int n) {
+	if (*ptail == NULL)
+	{
+		*ptail = create_node(n);
+		return;
+	}
+	else
+	{
+		node* new_node = create_node(n);		
+		new_node->next = (*ptail)->next;
+		(*ptail)->next = new_node;
+		*ptail = new_node;
+	}
 
 }
 
-void show_all(Node* root) {
-    Node* cur = root->next;
-    while (cur != NULL)
-    {
-        printf("%d ",cur->data);
-        cur = cur->next;
-    }
+void display(node** ptail) {
+	node* cur = *ptail;
 
+	while (cur != NULL)
+	{
+		printf("[%d ]", cur->data);
+		cur = cur->next;
+	}
 }
- 
+
 
 int main()
 {
-    Node* head = malloc(sizeof(struct Node));
-    head->next = NULL;
-
-    add(head, 2);
-    add(head, 3);
-
-    show_all(head);
-
+	node* tail = NULL;
+	add_node(&tail, 4);
+	add_node(&tail, 5);
+	add_node(&tail, 6);
+	display(&tail);
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
