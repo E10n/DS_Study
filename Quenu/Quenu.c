@@ -29,7 +29,7 @@ typedef struct quenue {
 }Quenue;
 
 
-void createQuenue(Quenue* quenue) {
+void createQuenue(Quenue** quenue) {
 	(*quenue) = (Quenue*)malloc(sizeof(Quenue));
 	(*quenue)->front = NULL;
 	(*quenue)->rear = NULL;
@@ -91,6 +91,16 @@ Node* deleteQuneue(Quenue* quenue) {
 	quenue->size--;
 }
 
+void printQuenue(Quenue* quenue) {
+	
+	Quenue* cur = quenue;
+	for (int i = 0; i < cur->size; i++)
+	{
+		printf("%c\n",*(cur->front->data));
+		cur->front = cur->front->next;
+	}
+
+}
 
 int main()
 {
@@ -102,13 +112,7 @@ int main()
 	Enquenue(quenue, createNode("B"));
 	Enquenue(quenue, createNode("D"));
 
-
-
-	for (int i = 0; i < quenue->size; i++)
-	{
-		printf("%c",quenue->front->data);
-		quenue->front = quenue->front->next;
-	}
+	printQuenue(quenue);
 
 	return 0;
 
