@@ -1,3 +1,5 @@
+#트리
+
 https://www.youtube.com/watch?v=LnxEBW29DOw
 https://www.youtube.com/watch?v=TdakkF5Xh6o
 트리는 계층이고 구조이며 그룹이다.
