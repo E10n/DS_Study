@@ -1,7 +1,7 @@
 # 트리
 
-https://www.youtube.com/watch?v=LnxEBW29DOw
-https://www.youtube.com/watch?v=TdakkF5Xh6o
+* 참조링크 : <https://www.youtube.com/watch?v=LnxEBW29DOw>
+* 참조링크 : <https://www.youtube.com/watch?v=TdakkF5Xh6o>
 트리는 계층이고 구조이며 그룹이다.
 부모-자식 의 구조를 지니며 더이상 자식이 없는 노드를 leaf(잎) 이라고 부른다.
 
