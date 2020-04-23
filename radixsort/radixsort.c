@@ -1,25 +1,161 @@
-﻿
-#include <stdio.h>
+﻿#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+typedef struct data {
+	int data;
+	struct data* next;
+}Data;
 
 typedef struct node
 {
-	int data[3];
 	int index;
+	Data* data;
+	struct node* pre;
 	struct node* next;
-	
 }Node;
 
-Node
 
 
-void sort() {
-	
+Node* createNode() {
+	Node* newNode = (Node*)malloc(sizeof(Node));
+	newNode->data = NULL;
+	newNode->pre = NULL;
+	newNode->next = NULL;
+	return newNode;
 }
+
+void createQuenue(Node** front,Node** rear) {
+	for (int i = 0; i < 10; i++)
+	{
+		if (*front == NULL)
+		{
+			Node* newNode = createNode();
+			newNode->index = 0;
+			*front = newNode;
+			*rear = newNode;
+		}
+		else
+		{
+			Node* newNode = createNode();
+			newNode->index = i;
+			(*rear)->next = newNode;
+			newNode->pre = (*rear);
+			(*rear) = newNode;
+		}
+		
+	}
+
+}
+
+void Dequenue(Node* front,Node* rear,int A[],int size) {
+	Node* f = front;
+	Data* tmp = f->data;
+	int index = 0;
+
+	while (index != size)
+	{
+		if (f != NULL)
+		{
+			tmp = f->data;
+			while (tmp != NULL)
+			{
+				A[index] = tmp->data;
+				index++;
+				tmp = tmp->next;
+			}
+		}
+		f = f->next;
+	}
+	f = front;
+
+	while (f != NULL)
+	{
+		f->data = NULL;
+		f = f->next;
+	}
+
+}
+
+int Max(int A[],int size) {
+	int max = 0;
+	for (int i = 0; i < size; i++)
+	{
+		int count = 0;
+		int d = A[i];
+		while (1)
+		{
+			d = d / 10;
+			count++;
+			if (d == 0)
+			{
+				break;
+			}
+		}
+		max = (max > count) ? max : count;
+	}
+	return max;
+}
+
+void radixSort(Node* front,Node* rear ,int A[], int size) {
+	createQuenue(&front, &rear);
+	Node* f = front;
+	int max = Max(A, size);
+	int mod = 10;
+	int dmin = 1;
+	for (int k = 0; k < max; k++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			int decimal = (A[j] % mod) / dmin;
+			for (int i = 0; f != NULL; i++)
+			{
+				if (f->index == decimal)
+				{
+					Data* newData = (Data*)malloc(sizeof(Data));
+					newData->data = A[j];
+					newData->next = NULL;
+					Data* tmp = f->data;
+					if (f->data == NULL)
+					{
+						f->data = newData;
+
+					}
+					else
+					{
+						while (tmp->next != NULL)
+						{
+							tmp = tmp->next;
+						}
+						tmp->next = newData;
+					}
+					f = front;
+					break;
+				}
+				else
+				{
+					f = f->next;
+				}
+			}
+		}
+
+		Dequenue(front, rear, A, size);
+
+		mod *= 10;
+		dmin *= 10;
+	}
+	}
+	
 
 int main()
 {
-	Node* root = NULL
+	Node* front = NULL;
+	Node* rear = NULL;
+	int A[7] = { 251,231,362,431,954,656,932 };
+	int size = sizeof(A) / sizeof(int);
 
+	radixSort(front,rear,A,size);
+	
 
 }
 
