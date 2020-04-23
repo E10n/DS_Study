@@ -1,6 +1,13 @@
-﻿#include <stdio.h>
+﻿/*
+MSD radix sort
+Sort by the first digit, then sort each of the groups by the next digit
+
+LSD radix sort
+Sort by the last digit, then by the middle and the first one
+*/
+
+#include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 typedef struct data {
 	int data;
