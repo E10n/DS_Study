@@ -1,14 +1,38 @@
-﻿// Stack.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+﻿// Bubblesort.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
 #include <stdio.h>
 
+void sort(int A[],int n) {
+	int i, j, tmp;
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n-1; j++)
+		{
+			if (A[j] > A[j+1])
+			{
+				tmp = A[j];
+				A[j] = A[j + 1];
+				A[j + 1] = tmp;
+			}
+		}
+	}
+}
+
+
 int main()
 {
+	int A[] = { 9,8,7,6,5,4,3,2,1 };
 
-	printf("adsad");
+	int n = sizeof(A) / sizeof(int);
 
+	sort(A, n);
 
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d",A[i]);
+	}
 
 }
 
