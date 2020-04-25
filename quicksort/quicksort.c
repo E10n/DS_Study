@@ -1,81 +1,48 @@
 ﻿/*
-Merge sort
+quick sort
 */
+
 #include <stdio.h>
 
-#define max 6
+#define max 12
 
-void merge(); //conquer
-void mergesort(); //divide
-
-
-int main()
-{ 
-	int a[max] = { 20,10,70,80,40,90 };
-	
-	mergesort(a, 0, max - 1);	
-	return 0;
+void swap(int* a, int* b) {
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
-void merge(int a[], int low, int m, int high) {
-	int b[100];
-	int k = 0;
-	int i = low;
-	int j = m + 1;
+int partition(int a[], int l, int r) {
+	int pivot = a[r];
+	int i = l;
 	
-	while (i <= m && j <= high)
+	for (int j = l; j < r; j++)
 	{
-		if (a[i] <= a[j])
+		if (a[j] <= pivot)
 		{
-			b[k] = a[i];
-			k++;
+			swap(&a[i], &a[j]);
 			i++;
 		}
-		else
-		{
-			b[k] = a[j];
-			k++;
-			j++;
-		}
 	}
-
-	while (i <= m)
-	{
-		b[k] = a[i];
-		k++;
-		i++;
-	}
-
-	while (j <= high)
-	{
-		b[k] = a[j];
-		k++;
-		j++;
-	}
-
-	k--;
-	while (k >= 0)
-	{
-		a[low+k] = b[k];
-		k--;
-	}
+	swap(&a[i], &a[r]);
 	
-
+	return i;
+		
 }
 
-void mergesort(int a[], int low, int high) {
-	if (low < high)
+void quickSort(int a[],int l,int r) {
+	if (l < r)
 	{
-		int m = (low + high) / 2;
-		mergesort(a, low, m);
-		mergesort(a, m + 1, high);
+		int p = partition(a, l, r);
+		quickSort(a, l, p - 1);
+		quickSort(a, p + 1, r);
+	}
+}
 
-		merge(a, low, m, high);
-	}
-	else
-	{
-		return;
-	}
+int main()
+{
+	int A[max] = { 60,20,40,50,10,30,24,67,43,12,6,76};
+	quickSort(A,0,max-1);
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴

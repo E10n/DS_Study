@@ -1,81 +1,37 @@
-﻿/*
-Merge sort
-*/
+﻿// insertsort.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+//
+
 #include <stdio.h>
 
-#define max 6
+void insertSort(int A[],int size) {
 
-void merge(); //conquer
-void mergesort(); //divide
+	for (int j = 1; j <= size; j++)
+	{
+		for (int i = 0; i < j-1; i++)
+		{
+			if (A[j] <= A[i])
+			{
+				int k = j;
+				while (k != i)
+				{
+					int tmp = A[k - 1];
+					A[k - 1] = A[k];
+					A[k] = tmp;
+					k--;
+				}
+			}
+		}
+	}
+
+}
 
 
 int main()
-{ 
-	int a[max] = { 20,10,70,80,40,90 };
-	
-	mergesort(a, 0, max - 1);	
-	return 0;
-}
+{
+	A[4] = { 2,1,5,4 };
+	int n = sizeof(A) / sizeof(int);
+	insertSort(A,n);
 
-void merge(int a[], int low, int m, int high) {
-	int b[100];
-	int k = 0;
-	int i = low;
-	int j = m + 1;
-	
-	while (i <= m && j <= high)
-	{
-		if (a[i] <= a[j])
-		{
-			b[k] = a[i];
-			k++;
-			i++;
-		}
-		else
-		{
-			b[k] = a[j];
-			k++;
-			j++;
-		}
-	}
-
-	while (i <= m)
-	{
-		b[k] = a[i];
-		k++;
-		i++;
-	}
-
-	while (j <= high)
-	{
-		b[k] = a[j];
-		k++;
-		j++;
-	}
-
-	k--;
-	while (k >= 0)
-	{
-		a[low+k] = b[k];
-		k--;
-	}
-	
-
-}
-
-void mergesort(int a[], int low, int high) {
-	if (low < high)
-	{
-		int m = (low + high) / 2;
-		mergesort(a, low, m);
-		mergesort(a, m + 1, high);
-
-		merge(a, low, m, high);
-	}
-	else
-	{
-		return;
-	}
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
