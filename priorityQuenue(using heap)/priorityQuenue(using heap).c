@@ -1,37 +1,61 @@
-﻿// insertsort.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
-
+﻿
 #include <stdio.h>
 
-void insertSort(int A[],int size) {
+void swap(int *a,int *b) {
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 
-	for (int j = 1; j < size; j++)
-	{
-		for (int i = 0; i <= j-1; i++)
-		{
-			if (A[j] <= A[i])
-			{
-				int k = j;
-				while (k != i)
-				{
-					int tmp = A[k - 1];
-					A[k - 1] = A[k];
-					A[k] = tmp;
-					k--;
-				}
-			}
-		}
-	}
+void Enquenue(int A[],int n,int data) {
+	A[n] = data;
+}
+
+void Dequenue() {
+
 
 }
 
+void MaxHeap(int A[],int n,int i) {
+	int l = (i * 2) + 1;
+	int r = (i * 2) + 2;
+	int largest = i;
+
+	if (l < n && A[l] > A[largest])
+	{
+		largest = l;
+	}
+	if (r < n && A[r] > A[largest])
+	{
+		largest = r;
+	}
+
+	if (i != largest)
+	{
+		swap(&A[i], &A[largest]);
+		MaxHeap(A, n, largest);
+	}
+}
+
+void CreateQuenue(int A[], int n) {
+
+	for (int i = 2 ; i >= 0; i--)
+	{
+		MaxHeap(A, n, i);
+	}
+	
+
+}
 
 int main()
 {
-	int A[7] = { 25,44,10,23,57,99,35 };
-	int n = sizeof(A) / sizeof(int);
-	insertSort(A,n);
+	int A[100] = { 1,4,5,2,3,7,9};
+	int n = sizeof(A) / sizeof(A[0]);
 
+	CreateQuenue(A,n);
+	Enquenue(A, n, 10);
+
+	return 0;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
